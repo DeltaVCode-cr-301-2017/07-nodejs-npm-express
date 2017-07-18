@@ -17,6 +17,10 @@ app.get('/new', function(request, response){
   response.sendFile('starter-code/public/new.html', {root: '.'});
 });
 
+app.get('*', function(request, response){
+  response.status(404).send('404 Page not found');
+});
+
 app.post('/articles', bodyParser, function(request, response) {
   // REVIEW: This route will receive a new article from the form page, new.html,
   // and log that form data to the console. We will wire this up soon to actually
