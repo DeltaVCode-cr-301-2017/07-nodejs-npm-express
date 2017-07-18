@@ -37,13 +37,13 @@ Article.fetchAll = function() {
     articleView.initIndexPage();
   } else {
     $.getJSON('/data/hackerIpsum.json')
-    .then(function(rawData) {
-      Article.loadAll(rawData);
-      localStorage.rawData = JSON.stringify(rawData);
-      articleView.initIndexPage();
-    }, function(err) {
-      console.error(err);
-    });
+      .then(function(rawData) {
+        Article.loadAll(rawData);
+        localStorage.rawData = JSON.stringify(rawData);
+        articleView.initIndexPage();
+      }, function(err) {
+        console.error(err);
+      });
   }
 }
 
@@ -53,8 +53,8 @@ Article.fetchAll = function() {
 // in our terminal!
 Article.prototype.insertRecord = function(callback) {
   $.post('/articles', {author: this.author, authorUrl: this.authorUrl, body: this.body, category: this.category, publishedOn: this.publishedOn, title: this.title})
-  .then(function(data) {
-    console.log(data);
-    if (callback) callback();
-  })
+    .then(function(data) {
+      console.log(data);
+      if (callback) callback();
+    })
 };
