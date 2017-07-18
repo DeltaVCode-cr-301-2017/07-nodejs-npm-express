@@ -23,9 +23,9 @@ app.post('/articles', bodyParser, function(request, response) {
   // write a record to our persistence layer!
   console.log(request.body);
   response.send('Record posted to server!!');
-})
+});
 
 app.listen(PORT, function() {
   // TODO: Log to the console a message that lets you know which port your server has started on
-  console.log('Express is listening to dustin-chuck-mitchell')
+  console.log('Express is listening to dustin-chuck-mitchell on port ' + PORT);
 });
