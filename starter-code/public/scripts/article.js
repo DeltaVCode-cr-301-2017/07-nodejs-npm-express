@@ -35,26 +35,23 @@ Article.fetchAll = function() {
   if (localStorage.rawData) {
     Article.loadAll(JSON.parse(localStorage.rawData));
     articleView.initIndexPage();
-  } else {
+  }
+  else {
     $.getJSON('/data/hackerIpsum.json')
-    .then(function(rawData) {
-      Article.loadAll(rawData);
-      localStorage.rawData = JSON.stringify(rawData);
-      articleView.initIndexPage();
-    }, function(err) {
-      console.error(err);
-    });
+      .then(function(rawData) {
+        Article.loadAll(rawData);
+        localStorage.rawData = JSON.stringify(rawData);
+        articleView.initIndexPage();
+      }, function(err) {
+        console.error(err);
+      });
   }
 }
 
-// REVIEW: This new prototype method on the Article object constructor
-// will allow us to create a new article from the new.html form page,
-// and submit that data to the back-end. We will see this log out to the server
-// in our terminal!
 Article.prototype.insertRecord = function(callback) {
   $.post('/articles', {author: this.author, authorUrl: this.authorUrl, body: this.body, category: this.category, publishedOn: this.publishedOn, title: this.title})
-  .then(function(data) {
-    console.log(data);
-    if (callback) callback();
-  })
+    .then(function(data) {
+      console.log(data);
+      if (callback) callback();
+    })
 };
