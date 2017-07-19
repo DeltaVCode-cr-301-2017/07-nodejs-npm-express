@@ -36,8 +36,7 @@ Article.fetchAll = function() {
     Article.loadAll(JSON.parse(localStorage.rawData));
     articleView.initIndexPage();
   } else {
-    $.getJSON('/data/hackerIpsum.json')
-    .then(function(rawData) {
+    $.getJSON('/data/hackerIpsum.json').then(function(rawData) {
       Article.loadAll(rawData);
       localStorage.rawData = JSON.stringify(rawData);
       articleView.initIndexPage();
